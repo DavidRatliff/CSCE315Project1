@@ -1,5 +1,6 @@
 
 <?php
+
 	$debug = false;
 	include('CommonMethods.php');
 	$COMMON = new Common($debug);
@@ -9,28 +10,22 @@
 	$endDate = $_GET["endDate"];
 	$startTime = $_GET["startTime"];
 	$endTime = $_GET["endTime"];
-	
-	//Need to join dates and times to make timestamps
-	//$startDate . $startTime;
-	
-	//echo();
-	
-	
+
+		
 	if($_GET["highOfWeek"]) {
-		//echo("In here");
 		getHigh($startDate,$endDate,$startTime,$endTime);
 	}
 	else if($_GET["lowOfWeek"]) {
 		echo("Chose low of the week");
 	}
 	else if($_GET["avgTF"]) {
-		echo("Chose average");
+		getAvg($startDate,$endDate,$startTime,$endTime);
 	}
 	else if($_GET["medTF"]) {
 		echo("Chose median");
 	}
 	else if($_GET["modeTF"]) {
-		
+	
 	}
 	else if($_GET["visualRep"]) {
 		
@@ -42,6 +37,8 @@
 		echo("Error: Unknown Option Selected");
 	}
 	
+	
+	//Helper function used to convert string arguments to SQL date format
 	function formatDate($date,$time) {
 		$timestamp = strtotime($date . " " . $time);
 		$datetime = date("Y-m-d H:i", $timestamp);
@@ -51,41 +48,53 @@
 	}
 	
 	
+	
+	//Finished
 	function getNumUserBetween($startD,$endD,$startT,$endT) {
-		$beginning = formatDate($startD,$startT);
+		global $debug; global $COMMON;
 		
-		$sql = "SELECT COUNT(*) FROM `motion_data` WHERE `visit_time` BETWEEN '$beginning' AND CURRENT_TIMESTAMP";
-		//echo($sql);
+		$beginning = formatDate($startD,$startT);
+		$end = formatDate($endD, $endT);
+		$sql = "SELECT COUNT(*) FROM `motion_data` WHERE `visit_time` BETWEEN '$beginning' AND '$end'";
 		
 		$rs = $COMMON->executeQuery($sql, $_SERVER["SCRIPT_NAME"] );
-		$row = $rs->fetch(PDO::FETCH_ASSOC);
-		
-		echo(gettype($row));
+		$row = $rs->fetch(PDO::FETCH_NUM);
+
+		echo("<h3>Number of students between " . $beginning . " and " . $end . ": " . $row[0] ."</h3>");
 	}
 	
 	
+	//Needs implementation
 	function getHigh($startD,$endD,$startT,$endT) {
-		//global $debug; global $COMMON;
+		global $debug; global $COMMON;
+
+		$beginning = formatDate($startD,$startT);
+		$end = formatDate($endD, $endT);
 		
-		//echo($startD);
-		//echo($startT);
-		
-		$value = formatDate($startD,$startT);
-		
-		
-		//$sql = "SELECT * FROM motion_data"
-		//$rs = $COMMON->executeQuery( $sql , $_SERVER["SCRIPT_NAME"] );
-		
-		//$row = $rs->fetch(PDO::FETCH_ASSOC);
 		
 	}
 	
+	
+	//Needs implementation
 	function getAvg($startD,$endD,$startT,$endT) {
-		//global $debug; global $COMMON;
+		global $debug; global $COMMON;
 		
-		//$sql = "SELECT COUNT(visit_time) FROM motion_data WHERE";
+		$beginning = formatDate($startD,$startT);
+		$end = formatDate($endD, $endT);
 		
+		$sql = "SELECT COUNT(*) FROM `motion_data` WHERE `visit_time` BETWEEN '$beginning' AND '$end'";
+		$rs = $COMMON->executeQuery($sql, $_SERVER["SCRIPT_NAME"] );
+		$row = $rs->fetch(PDO::FETCH_NUM);
+	
 		
+	
+		echo($row[0]);
+	}
+	
+	
+	//Needs implementation. Suggested on piazza to look into google charts.
+	function visualRepresentation() {
+
 	}
 	
 ?>
