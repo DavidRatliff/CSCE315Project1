@@ -71,9 +71,6 @@
 	{
 		global $debug; global $COMMON;
 		
-		$beginning = formatDate($startD,$startT);
-		$end = formatDate($endD, $endT);
-
 		$sql = "SELECT AVG(COUNT) FROM ( SELECT COUNT(*) AS COUNT FROM `motion_data` WHERE (CAST(visit_time AS DATE) BETWEEN '$startD' AND '$endD') AND (CAST(visit_time AS TIME) BETWEEN '$startT' AND '$endT') GROUP BY CAST(visit_time AS DATE) ) AS COUNTS";
 		$rs = $COMMON->executeQuery($sql, $_SERVER["SCRIPT_NAME"] );
 		$row = $rs->fetch(PDO::FETCH_NUM);
