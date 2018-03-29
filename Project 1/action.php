@@ -11,6 +11,7 @@
 	if($_GET["singleDay"]) {
 		$endDate = $startDate;	
 	}
+	
 	echo("<h3> Traffic Analysis: </h3>");
 	echoVisitsBetween($startDate,$endDate,$startTime,$endTime);
 	echoHigh($startDate,$endDate,$startTime,$endTime);
@@ -21,7 +22,9 @@
 		//display histogram
 	}
 		
-	// Finished
+	// Displays the total number of visits in the given time frame
+	// Preconditions: User inputs a valid time frame, successful connection to DB
+	// Postconditions: Valus is displayed correctly, successful execution of query
 	function echoVisitsBetween($startD,$endD,$startT,$endT) 
 	{
 		global $debug; global $COMMON;
@@ -33,7 +36,9 @@
 		echo("<h4> Visits between " . $startD . " at " . $startT . " and " . $endD . " at " . $endT . ": " . $row[0] . "</h4>");
 	}
 	
-	// Finished
+	// Displays the low point in the given time frame
+	// Preconditions: User inputs valid time frame, successful connection to DB
+	// Postconditions: Value is displayed correctly, successful execution of query
 	function echoLow($startD, $endD, $startT, $endT) 
 	{
 		global $debug; global $COMMON;
@@ -50,7 +55,9 @@
 	}
 	
 	
-	// Finished
+	// Displays the high point in the given time frame
+	// Preconditions: User inputs valid time frame, successful connection to DB
+	// Postconditions: Value is displayed correctly, successful execution of query
 	function echoHigh($startD,$endD,$startT,$endT) 
 	{
 		global $debug; global $COMMON;
@@ -66,7 +73,9 @@
 		echo("<h4> The high point of the time frame was: " . $row[0] . " visit(s) on " . $row[1] . "</h4>");
 	}
 	
-	// Finished
+	// Displays the average number of visits in the given time frame
+	// Preconditions: User inputs valid time frame, successful connection to DB
+	// Postconditions: Value is displayed correctly, successful execution of query
 	function echoAvg($startD,$endD,$startT,$endT) 
 	{
 		global $debug; global $COMMON;

@@ -1,6 +1,8 @@
 <!DOCTYPE HTML>
 <html>
 <script>
+
+	<!-- Allows user to only see the statistics for one single day (i.e. start date = end date -->
 	function toggleEndDate() {
 		var checkbox = document.getElementById("singleDay");
 		var field = document.getElementById("endDate");
