@@ -4,7 +4,7 @@ from datetime import date, datetime
 
 connection = None
 DB_NAME = 'xxx'
-TABLE_NAME = 'xxx'
+TABLE_NAME = 'motion_data'
 
 # Connects to and ensures correct configuration of DB
 # Preconditions: Specified host is MySQL server, credentials are correct, DB named DB_NAME and table named TABLE_NAME already exist
@@ -41,9 +41,9 @@ def db_setup():
 def post_db_data():
 	cursor = connection.cursor()
 
-	query = ("INSERT INTO xxx"
-			 "(xxx, xxx, ...)"
-			 "VALUES (xxx, xxx, ...)")
+	query = ("INSERT INTO `motion_data`"
+			 "(visitor_num , visit_time)"
+			 "VALUES (NULL, CURRENT_TIMESTAMP)")
 
 	cursor.execute(query)
 	connection.commit()
