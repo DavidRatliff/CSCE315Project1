@@ -1,6 +1,8 @@
 <!DOCTYPE HTML>
 <html>
 <script>
+	window.onload = toggleEndDate;
+	
 	// Disables end date form field if user enables "single day" checkbox
 	function toggleEndDate() {
 		var checkbox = document.getElementById("singleDay");
@@ -21,8 +23,6 @@
 		Select End Date: <input type = "date" name = "endDate" id = "endDate" required> <br>
 		Select Start Time: <input type = "time" name = "startTime" required>
 		Select End Time: <input type = "time" name = "endTime" required> <br> <br>
-
-		Generate Histogram: <input type = "checkbox" name = "histogram"> <br>
 		<input type = "submit" value = "Analyze">
 	</form>
 </body>
