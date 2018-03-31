@@ -3,16 +3,16 @@ from mysql.connector import errorcode
 from datetime import date, datetime
 
 connection = None
-DB_NAME = 'ratlidav'
-TABLE_NAME = 'motion_data'
+DB_NAME = 'xxx'
+TABLE_NAME = 'xxx'
 
 # Connects to and ensures correct configuration of DB
 # Preconditions: Specified host is MySQL server, credentials are correct, DB named DB_NAME and table named TABLE_NAME already exist
 # Postconditions: db_connection is alive
 def db_setup():
 	try:
-		db_connection = mysql.connector.connect(user='ratlidav',
-												password='ratlidav',
+		db_connection = mysql.connector.connect(user='xxx',
+												password='xxx',
 												host='',
 												database=DB_NAME)
 	except mysql.connector.Error as e:
@@ -41,9 +41,9 @@ def db_setup():
 def post_db_data():
 	cursor = connection.cursor()
 
-	query = ("INSERT INTO `motion_data`"
-			 "(`visitor_num`, `visit_time`)"
-			 "VALUES (NULL, CURRENT_TIMESTAMP)")
+	query = ("INSERT INTO xxx"
+			 "(xxx, xxx, ...)"
+			 "VALUES (xxx, xxx, ...)")
 
 	cursor.execute(query)
 	connection.commit()
